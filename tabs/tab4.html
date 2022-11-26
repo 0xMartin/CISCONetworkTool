@@ -17,6 +17,10 @@
         <div class="container py-3">
             <!-- Prikazy -->
             <h3>Příkazy</h3>
+            <p class="mb-0 text-danger">Konfiguraci směrování provádět vždy až
+                uplně nakoncí
+                kdy jsou nakonfigurovány všechny síťové rozhraní:</p>
+            <br>
             <p class="mb-0">Přejde do módu konfigurace směrování (RIP):</p>
             <p class="mt-0"><span class="fw-bold">Router(config)#</span> <span
                     class="text-info">router rip</span></p>
@@ -34,22 +38,18 @@
             <p class="mt-0"><span class="fw-bold">Router(config-router)#</span>
                 <span
                     class="text-info">no auto-summary</span></p>
+            <p class="mb-0">Ukončí konfiguraci směrování:</p>
+            <p class="mt-0"><span class="fw-bold">Router(config-router)#</span>
+                <span
+                    class="text-info">exit</span></p>
             <hr>
 
             <!-- Vygeneruj sekvenci -->
             <h2>Vygenerování routovaní</h2>
             <div class="input-group mb-3">
-                <span class="input-group-text">Interface</span>
+                <span class="input-group-text">IP list</span>
                 <input type="text" class="form-control"
-                    id="interface" value="FastEthernet0/1">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text">IP</span>
-                <input type="text" class="form-control"
-                    id="ip" value="192.168.0.1">
-                <span class="input-group-text">/</span>
-                <input type="number" class="form-control"
-                    id="mask" min="0" max="32" value="24">
+                    id="ip_list" value="10.0.0.0, 172.16.0.0">
             </div>
             <ul id="cmd_list" class="list-group scroll"></ul>
             <button type="submit" class="btn btn-primary"
