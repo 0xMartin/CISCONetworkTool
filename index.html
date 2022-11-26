@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta author="Martin Krčma">
+        <title>PS - pomůcka</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+            crossorigin="anonymous">
+        <style>
+            ul.scroll {
+                max-height: 400px;
+                overflow-y: auto;
+            }
+
+            div.tab-content {
+                height: 800px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container py-5">
+
+            <h1>Pomůcka pro vytváření sítí</h1>
+            <span class="font-italic">@Martin Krčma</span>
+            <hr>
+
+            <!-- Sekce 1 -->
+            <h2>Výpočet masky</h2>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Délka prefixu</span>
+                <input type="number" class="form-control"
+                    id="mask_prefix_length_1" min="0" max="32" value="24">
+                <span class="input-group-text" id="mask_output_1">0.0.0.0</span>
+            </div>
+            <button type="submit" class="btn btn-primary"
+                onclick="calculate_1()">Vypočítej</button>
+            <hr>
+
+            <!-- Sekce 2 -->
+            <h2>IP adresy zařízení v síti</h2>
+            <div class="row">
+                <div class="input-group mb-3 col pe-0">
+                    <span class="input-group-text">IP sítě</span>
+                    <input type="text" class="form-control"
+                        id="ip_2" value="10.0.0.64">
+                    <span class="input-group-text">/</span>
+                    <input type="number" class="form-control"
+                        id="mask_prefix_length_2" min="0" max="32" value="28">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary"
+                onclick="calculate_2()">Vypočítej</button>
+            <span class="px-4" id="device_count_2"></span>
+            <div class="py-4">
+                <ul id="ip_list_2" class="list-group scroll"></ul>
+            </div>
+            <hr>
+
+            <!-- Sekce 3 -->
+            <h2>Základní konfigurace v síti</h2>
+            <a
+                href="https://is.muni.cz/el/fi/podzim2015/PV233/um/RTR_CMD-2-CZ-_29_.pdf"
+                target="_blank">Základní
+                příkazy Cisco IOS pro správu směrovačů a přepínačů</a>
+            <ul class="nav nav-tabs pt-4" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link fw-bold active" id="tab0_nav"
+                        data-bs-toggle="tab" data-bs-target="#tab0"
+                        type="button"
+                        role="tab" aria-controls="tab0" aria-selected="true">Základ</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link fw-bold" id="tab1_nav"
+                        data-bs-toggle="tab" data-bs-target="#tab1"
+                        type="button"
+                        role="tab" aria-controls="tab1" aria-selected="false">Interface</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link fw-bold" id="tab2_nav"
+                        data-bs-toggle="tab"
+                        data-bs-target="#tab2" type="button" role="tab"
+                        aria-controls="tab2" aria-selected="false">VLAN
+                        Interface</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link fw-bold" id="tab3_nav"
+                        data-bs-toggle="tab"
+                        data-bs-target="#tab3" type="button" role="tab"
+                        aria-controls="tab3" aria-selected="false">Statické
+                        směrování</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link fw-bold" id="tab4_nav"
+                        data-bs-toggle="tab"
+                        data-bs-target="#tab4" type="button" role="tab"
+                        aria-controls="tab4" aria-selected="false">Dynamické
+                        směrování (RIP)</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link fw-bold" id="tab5_nav"
+                        data-bs-toggle="tab"
+                        data-bs-target="#tab5" type="button" role="tab"
+                        aria-controls="tab5" aria-selected="false">DHCP</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link fw-bold" id="tab6_nav"
+                        data-bs-toggle="tab"
+                        data-bs-target="#tab6" type="button" role="tab"
+                        aria-controls="tab6" aria-selected="false">VLAN</button>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active w-100 h-100" id="tab0"
+                    role="tabpanel"
+                    aria-labelledby="tab0_nav">
+                    <iframe class="w-100 h-100" src="./tabs/tab0.html"
+                        frameborder="0"></iframe>
+                </div>
+                <div class="tab-pane fade w-100 h-100" id="tab1"
+                    role="tabpanel"
+                    aria-labelledby="tab1_nav">
+                    <iframe class="w-100 h-100" src="./tabs/tab1.html"
+                        frameborder="0"></iframe>
+                </div>
+                <div class="tab-pane fade w-100 h-100" id="tab2"
+                    role="tabpanel"
+                    aria-labelledby="tab2_nav">
+                    <iframe class="w-100 h-100" src="./tabs/tab2.html"
+                        frameborder="0"></iframe>
+                </div>
+                <div class="tab-pane fade w-100 h-100" id="tab3"
+                    role="tabpanel"
+                    aria-labelledby="tab3_nav">
+                    <iframe class="w-100 h-100" src="./tabs/tab3.html"
+                        frameborder="0"></iframe>
+                </div>
+                <div class="tab-pane fade w-100 h-100" id="tab4"
+                    role="tabpanel"
+                    aria-labelledby="tab4_nav">
+                    <iframe class="w-100 h-100" src="./tabs/tab4.html"
+                        frameborder="0"></iframe>
+                </div>
+                <div class="tab-pane fade w-100 h-100" id="tab5"
+                    role="tabpanel"
+                    aria-labelledby="tab5_nav">
+                    <iframe class="w-100 h-100" src="./tabs/tab5.html"
+                        frameborder="0"></iframe>
+                </div>
+                <div class="tab-pane fade w-100 h-100" id="tab6"
+                    role="tabpanel"
+                    aria-labelledby="tab6_nav">
+                    <iframe class="w-100 h-100" src="./tabs/tab6.html"
+                        frameborder="0"></iframe>
+                </div>
+            </div>
+
+        </div>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+        <script src="./global.js" async defer></script>
+        <script src="./index.js" async defer></script>
+
+    </body>
+</html>
