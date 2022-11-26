@@ -4,6 +4,13 @@
  * @returns Maska ve formatu 255.255.255.255
  */
 function CIDR2netmask(bitCount) {
+    if(bitCount < 0) {
+        bitCount = 0;
+    }
+    if(bitCount > 32) {
+        bitCount = 32;
+    }
+
     var mask = [];
     for (var i = 0; i < 4; i++) {
         var n = Math.min(bitCount, 8);

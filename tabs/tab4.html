@@ -17,23 +17,27 @@
         <div class="container py-3">
             <!-- Prikazy -->
             <h3>Příkazy</h3>
-            <p class="mb-0">Vstoupení do módu konfigurace rozhraní:</p>
+            <p class="mb-0">Přejde do módu konfigurace směrování (RIP):</p>
             <p class="mt-0"><span class="fw-bold">Router(config)#</span> <span
-                    class="text-info">interface &lt;název rozhraní&gt;</span></p>
-            <p class="mb-0">Nastavení IP a masky rozhraní:</p>
-            <p><span class="fw-bold">Router(config-if)#</span> <span
-                    class="text-info">ip address &lt;IP&gt; &lt;Maska&gt;</span></p>
-            <p class="mb-0">Povolí/aktivuje sítové rozhraní:</p>
-            <p><span class="fw-bold">Router(config-if)#</span> <span
-                    class="text-info">no shutdown</span></p>
-
-            <p class="mb-0">Ukončí konfigurací rozhraní:</p>
-            <p><span class="fw-bold">Router#</span> <span
-                    class="text-info">exit</span></p>
+                    class="text-info">router rip</span></p>
+            <p class="mb-0">Nastaví RIP na verzi 2:</p>
+            <p class="mt-0"><span class="fw-bold">Router(config-router)#</span>
+                <span class="text-info">version 2</span></p>
+            <p class="mb-0">Příkaz "network" se používá k určení přímo
+                připojených podsítí k routeru, které mají být konfigurovány a
+                mají být zahrnuty do aktualizací směrování:</p>
+            <p class="mt-0"><span class="fw-bold">Router(config-router)#</span>
+                <span
+                    class="text-info">network &lt;IP sítě&gt;</span></p>
+            <p class="mb-0">Vypne autosumarizaci (ve většině případů je
+                potřeba):</p>
+            <p class="mt-0"><span class="fw-bold">Router(config-router)#</span>
+                <span
+                    class="text-info">no auto-summary</span></p>
             <hr>
 
             <!-- Vygeneruj sekvenci -->
-            <h2>Vygenerování příkazů</h2>
+            <h2>Vygenerování routovaní</h2>
             <div class="input-group mb-3">
                 <span class="input-group-text">Interface</span>
                 <input type="text" class="form-control"
@@ -54,6 +58,6 @@
         </div>
 
         <script src="../global.js" async defer></script>
-        <script src="./tab1.js" async defer></script>
+        <script src="./tab4.js" async defer></script>
     </body>
 </html>
