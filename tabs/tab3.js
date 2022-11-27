@@ -15,8 +15,11 @@ const mask = document.querySelector("#mask");
 
 function generate() {
     cmd_list.innerHTML = "";
-    insertCommandToUL(cmd_list, "interface " + interface.value);
-    insertCommandToUL(cmd_list, "ip address " + ip.value + " " + CIDR2netmask(parseInt(mask.value)));
-    insertCommandToUL(cmd_list, "no shutdown")
-    insertCommandToUL(cmd_list, "exit")
+
+    var inverse = 32 - parseInt(mask.value);
+    var network_ip = IPToInt(ip.value) >> inverse;
+    network_ip = network_ip << inverse;
+    ip.value = intToIP(network_ip);
+    
+    insertCommandToUL(cmd_list, "ip route " + ip.value + " " + CIDR2netmask(parseInt(mask.value)) + " " + interface.value);
 }

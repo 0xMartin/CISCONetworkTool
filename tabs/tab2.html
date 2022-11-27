@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Základ</title>
+        <title>VLAN Interface</title>
         <meta author="Martin Krčma">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,9 +17,9 @@
         <div class="container py-3">
             <!-- Prikazy -->
             <h3>Příkazy</h3>
-            <p class="mb-0">Vstoupení do módu konfigurace rozhraní:</p>
+            <p class="mb-0">Vstoupení do módu konfigurace virtuálního rozhraní. VLAN jsou identifikovány pomocí jejich čísla:</p>
             <p class="mt-0"><span class="fw-bold">Router(config)#</span> <span
-                    class="text-info">interface &lt;název rozhraní&gt;</span></p>
+                    class="text-info">interface vlan &lt;čislo&gt;</span></p>
             <p class="mb-0">Nastavení IP a masky rozhraní:</p>
             <p><span class="fw-bold">Router(config-if)#</span> <span
                     class="text-info">ip address &lt;IP&gt; &lt;Maska&gt;</span></p>
@@ -27,17 +27,21 @@
             <p><span class="fw-bold">Router(config-if)#</span> <span
                     class="text-info">no shutdown</span></p>
 
-            <p class="mb-0">Ukončí konfigurací rozhraní:</p>
-            <p><span class="fw-bold">Router#</span> <span
+            <p class="mb-0">Ukončí konfigurací VLAN rozhraní:</p>
+            <p><span class="fw-bold">Router(config)#</span> <span
                     class="text-info">exit</span></p>
+
+            <p class="mb-0">Odebere VLAN rozhraní:</p>
+            <p><span class="fw-bold">Router(config)#</span> <span
+                    class="text-info">no interface vlan &lt;čislo&gt;</span></p>
             <hr>
 
             <!-- Vygeneruj sekvenci -->
             <h2>Vygenerování příkazů</h2>
             <div class="input-group mb-3">
-                <span class="input-group-text">Interface</span>
-                <input type="text" class="form-control"
-                    id="interface" value="FastEthernet0/1">
+                <span class="input-group-text">Číslo VLAN</span>
+                <input type="number" class="form-control"
+                    id="interface" min="2" max="1001" value="10">
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text">IP</span>

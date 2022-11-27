@@ -7,10 +7,14 @@ const mask_output_1 = document.querySelector("#mask_output_1");
 const mask_prefix_length_1 = document.querySelector("#mask_prefix_length_1");
 
 // sekce 2
-const ip_2 = document.querySelector("#ip_2");
+const mask_2 = document.querySelector("#mask_2");
 const mask_prefix_length_2 = document.querySelector("#mask_prefix_length_2");
-const ip_list_2 = document.querySelector("#ip_list_2");
-const device_count_2 = document.querySelector("#device_count_2");
+
+// sekce 3
+const ip_3 = document.querySelector("#ip_3");
+const mask_prefix_length_3 = document.querySelector("#mask_prefix_length_3");
+const ip_list_3 = document.querySelector("#ip_list_3");
+const device_count_3 = document.querySelector("#device_count_3");
 
 /******************************************************************************************* */
 // events
@@ -21,20 +25,29 @@ function calculate_1() {
 }
 
 function calculate_2() {
-    var inverse = 32 - parseInt(mask_prefix_length_2.value);
-    var network_ip = IPToInt(ip_2.value) >> inverse;
+    var l = netmask2CIDR(mask_2.value);
+    if (l == -1) {
+        mask_prefix_length_2.innerHTML = "<span class='text-danger'>Neplatná</span>";
+    } else {
+        mask_prefix_length_2.innerHTML = l;
+    }
+}
+
+function calculate_3() {
+    var inverse = 32 - parseInt(mask_prefix_length_3.value);
+    var network_ip = IPToInt(ip_3.value) >> inverse;
     network_ip = network_ip << inverse;
-    ip_2.value = intToIP(network_ip);
+    ip_3.value = intToIP(network_ip);
 
     if (inverse <= 1) {
-        device_count_2.innerHTML = "Neplatná síť"
+        device_count_3.innerHTML = "Neplatná síť"
     } else {
-        device_count_2.innerHTML = "Počet zařízení: " + (Math.pow(2, inverse) - 2);
+        device_count_3.innerHTML = "Počet zařízení: " + (Math.pow(2, inverse) - 2);
     }
 
     var d_ip = network_ip;
     var end = Math.pow(2, inverse);
-    ip_list_2.innerHTML = "";
+    ip_list_3.innerHTML = "";
     for (var i = 0; i < end; i++) {
         var li = document.createElement("li");
         if (i == 0) {
@@ -47,7 +60,7 @@ function calculate_2() {
             li.classList = "list-group-item";
             li.innerHTML = intToIP(d_ip);
         }
-        ip_list_2.appendChild(li);
+        ip_list_3.appendChild(li);
         d_ip++;
     }
 }

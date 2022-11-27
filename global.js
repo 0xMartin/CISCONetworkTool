@@ -4,10 +4,10 @@
  * @returns Maska ve formatu 255.255.255.255
  */
 function CIDR2netmask(bitCount) {
-    if(bitCount < 0) {
+    if (bitCount < 0) {
         bitCount = 0;
     }
-    if(bitCount > 32) {
+    if (bitCount > 32) {
         bitCount = 32;
     }
 
@@ -18,6 +18,84 @@ function CIDR2netmask(bitCount) {
         bitCount -= n;
     }
     return mask.join('.');
+}
+
+/**
+ * Preveda masku na delku sitoveho prefixu (delku masky v bitech)
+ * @param {*} netmask Sitova maska 
+ * @returns Delka sitoveho prefixu (masky) v bitech
+ */
+function netmask2CIDR(netmask){
+    switch (netmask) {
+        case "0.0.0.0":
+            return 0;
+        case "128.0.0.0":
+            return 1;
+        case "192.0.0.0":
+            return 2;
+        case "224.0.0.0":
+            return 3;
+        case "240.0.0.0":
+            return 4;
+        case "248.0.0.0":
+            return 5;
+        case "252.0.0.0":
+            return 6;
+        case "254.0.0.0":
+            return 7;
+        case "255.0.0.0":
+            return 8;
+        case "255.128.0.0":
+            return 9;
+        case "255.192.0.0":
+            return 10;
+        case "255.224.0.0":
+            return 11;
+        case "255.240.0.0":
+            return 12;
+        case "255.248.0.0":
+            return 13;
+        case "255.252.0.0":
+            return 14;
+        case "255.254.0.0":
+            return 15;
+        case "255.255.0.0":
+            return 16;
+        case "255.255.128.0":
+            return 17;
+        case "255.255.192.0":
+            return 18;
+        case "255.255.224.0":
+            return 19;
+        case "255.255.240.0":
+            return 20;
+        case "255.255.248.0":
+            return 21;
+        case "255.255.252.0":
+            return 22;
+        case "255.255.254.0":
+            return 23;
+        case "255.255.255.0":
+            return 24;
+        case "255.255.255.128":
+            return 25;
+        case "255.255.255.192":
+            return 26;
+        case "255.255.255.224":
+            return 27;
+        case "255.255.255.240":
+            return 28;
+        case "255.255.255.248":
+            return 29;
+        case "255.255.255.252":
+            return 30;
+        case "255.255.255.254":
+            return 31;
+        case "255.255.255.255":
+            return 32;
+        default:
+            return -1;
+    }
 }
 
 /**

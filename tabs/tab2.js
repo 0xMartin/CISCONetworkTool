@@ -15,7 +15,7 @@ const mask = document.querySelector("#mask");
 
 function generate() {
     cmd_list.innerHTML = "";
-    insertCommandToUL(cmd_list, "interface " + interface.value);
+    insertCommandToUL(cmd_list, "interface vlan " + interface.value);
     insertCommandToUL(cmd_list, "ip address " + ip.value + " " + CIDR2netmask(parseInt(mask.value)));
     insertCommandToUL(cmd_list, "no shutdown")
     insertCommandToUL(cmd_list, "exit")

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Základ</title>
+        <title>Statické směrování</title>
         <meta author="Martin Krčma">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,17 +41,17 @@
             <!-- Vygeneruj sekvenci -->
             <h2>Vygenerování routovaní</h2>
             <div class="input-group mb-3">
-                <span class="input-group-text">Interface</span>
+                <span class="input-group-text">IP sítě</span>
                 <input type="text" class="form-control"
-                    id="interface" value="FastEthernet0/1">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text">IP</span>
-                <input type="text" class="form-control"
-                    id="ip" value="192.168.0.1">
+                    id="ip" value="10.0.0.0">
                 <span class="input-group-text">/</span>
                 <input type="number" class="form-control"
-                    id="mask" min="0" max="32" value="24">
+                    id="mask" min="0" max="32" value="28">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Interface IP</span>
+                <input type="text" class="form-control"
+                    id="interface" value="192.168.0.1">
             </div>
             <ul id="cmd_list" class="list-group scroll"></ul>
             <button type="submit" class="btn btn-primary"

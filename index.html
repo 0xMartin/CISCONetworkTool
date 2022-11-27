@@ -14,12 +14,12 @@
             crossorigin="anonymous">
         <style>
             ul.scroll {
-                max-height: 400px;
+                max-height: 350px;
                 overflow-y: auto;
             }
 
             div.tab-content {
-                height: 1500px;
+                height: 1800px;
             }
         </style>
     </head>
@@ -43,22 +43,34 @@
             <hr>
 
             <!-- Sekce 2 -->
+            <h2>Výpočet delky masky</h2>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Maska</span>
+                <input type="text" class="form-control"
+                    id="mask_2" value="255.255.255.0">
+                <span class="input-group-text" id="mask_prefix_length_2">24</span>
+            </div>
+            <button type="submit" class="btn btn-primary"
+                onclick="calculate_2()">Vypočítej</button>
+            <hr>
+
+            <!-- Sekce 3 -->
             <h2>IP adresy zařízení v síti</h2>
             <div class="row">
                 <div class="input-group mb-3 col pe-0">
                     <span class="input-group-text">IP sítě</span>
                     <input type="text" class="form-control"
-                        id="ip_2" value="10.0.0.64">
+                        id="ip_3" value="10.0.0.64">
                     <span class="input-group-text">/</span>
                     <input type="number" class="form-control"
-                        id="mask_prefix_length_2" min="0" max="32" value="28">
+                        id="mask_prefix_length_3" min="0" max="32" value="28">
                 </div>
             </div>
             <button type="submit" class="btn btn-primary"
-                onclick="calculate_2()">Vypočítej</button>
-            <span class="px-4" id="device_count_2"></span>
+                onclick="calculate_3()">Vypočítej</button>
+            <span class="px-4" id="device_count_3"></span>
             <div class="py-4">
-                <ul id="ip_list_2" class="list-group scroll"></ul>
+                <ul id="ip_list_3" class="list-group scroll"></ul>
             </div>
             <hr>
 
