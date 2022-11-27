@@ -30,4 +30,5 @@ function generate() {
     insertCommandToUL(cmd_list, "domain-name " + domain.value);
     insertCommandToUL(cmd_list, "dns-server " + dns.value);
     insertCommandToUL(cmd_list, "exit");
+    insertCommandToUL(cmd_list, "service dhcp");
 }
