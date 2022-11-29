@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Masky</title>
+        <meta author="Martin Krčma">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+            crossorigin="anonymous">
+        <style>
+                ul.scroll {
+                    max-height: 350px;
+                    overflow-y: auto;
+                }
+    
+                div.tab-content {
+                    height: 1800px;
+                }
+            </style>
+    </head>
+    <body>
+        <div class="container py-3">
+            <!-- Sekce 1 -->
+            <h2>Výpočet masky</h2>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Délka prefixu</span>
+                <input type="number" class="form-control"
+                    id="mask_prefix_length_1" min="0" max="32" value="24">
+                <span class="input-group-text" id="mask_output_1">0.0.0.0</span>
+            </div>
+            <button type="submit" class="btn btn-primary"
+                onclick="calculate_1()">Vypočítej</button>
+            <hr>
+
+            <!-- Sekce 2 -->
+            <h2>Výpočet délky masky</h2>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Maska</span>
+                <input type="text" class="form-control"
+                    id="mask_2" value="255.255.255.0">
+                <span class="input-group-text" id="mask_prefix_length_2">24</span>
+            </div>
+            <button type="submit" class="btn btn-primary"
+                onclick="calculate_2()">Vypočítej</button>
+            <hr>
+
+            <!-- Sekce 3 -->
+            <h2>Výpočet wildcard masky</h2>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Délka prefixu</span>
+                <input type="number" class="form-control"
+                    id="mask_prefix_length_3" min="0" max="32" value="24">
+                <span class="input-group-text" id="mask_output_3">0.0.0.0</span>
+            </div>
+            <button type="submit" class="btn btn-primary"
+                onclick="calculate_3()">Vypočítej</button>
+            <hr>
+
+            <!-- Sekce 4 -->
+            <h2>IP adresy zařízení v síti</h2>
+            <div class="row">
+                <div class="input-group mb-3 col pe-0">
+                    <span class="input-group-text">IP sítě</span>
+                    <input type="text" class="form-control"
+                        id="ip_4" value="10.0.0.64">
+                    <span class="input-group-text">/</span>
+                    <input type="number" class="form-control"
+                        id="mask_prefix_length_4" min="0" max="32" value="28">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary"
+                onclick="calculate_4()">Vypočítej</button>
+            <span class="px-4" id="device_count_4"></span>
+            <div class="py-4">
+                <ul id="ip_list_4" class="list-group scroll"></ul>
+            </div>
+            <hr>
+        </div>
+
+        <script src="../global.js" async defer></script>
+        <script src="./tab_default.js" async defer></script>
+    </body>
+</html>

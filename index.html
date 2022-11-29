@@ -25,67 +25,28 @@
     </head>
     <body>
         <div class="container py-5">
-
-            <h1>CISCO - Pomůcka pro vytváření sítí</h1>
-            <span class="font-italic">@Martin Krčma</span>
+            <h1>🌐 CISCO - Pomůcka pro vytváření sítí 🌐</h1>
+            <span class="fst-italic">@Martin Krčma</span>
             <hr>
-
-            <!-- Sekce 1 -->
-            <h2>Výpočet masky</h2>
-            <div class="input-group mb-3">
-                <span class="input-group-text">Délka prefixu</span>
-                <input type="number" class="form-control"
-                    id="mask_prefix_length_1" min="0" max="32" value="24">
-                <span class="input-group-text" id="mask_output_1">0.0.0.0</span>
-            </div>
-            <button type="submit" class="btn btn-primary"
-                onclick="calculate_1()">Vypočítej</button>
-            <hr>
-
-            <!-- Sekce 2 -->
-            <h2>Výpočet delky masky</h2>
-            <div class="input-group mb-3">
-                <span class="input-group-text">Maska</span>
-                <input type="text" class="form-control"
-                    id="mask_2" value="255.255.255.0">
-                <span class="input-group-text" id="mask_prefix_length_2">24</span>
-            </div>
-            <button type="submit" class="btn btn-primary"
-                onclick="calculate_2()">Vypočítej</button>
-            <hr>
-
-            <!-- Sekce 3 -->
-            <h2>IP adresy zařízení v síti</h2>
-            <div class="row">
-                <div class="input-group mb-3 col pe-0">
-                    <span class="input-group-text">IP sítě</span>
-                    <input type="text" class="form-control"
-                        id="ip_3" value="10.0.0.64">
-                    <span class="input-group-text">/</span>
-                    <input type="number" class="form-control"
-                        id="mask_prefix_length_3" min="0" max="32" value="28">
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary"
-                onclick="calculate_3()">Vypočítej</button>
-            <span class="px-4" id="device_count_3"></span>
-            <div class="py-4">
-                <ul id="ip_list_3" class="list-group scroll"></ul>
-            </div>
-            <hr>
-
-            <!-- Sekce 3 -->
-            <h2>Základní konfigurace v síti</h2>
             <a
                 href="https://is.muni.cz/el/fi/podzim2015/PV233/um/RTR_CMD-2-CZ-_29_.pdf"
                 target="_blank">Základní
                 příkazy Cisco IOS pro správu směrovačů a přepínačů</a>
+
             <ul class="nav nav-tabs pt-4" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link fw-bold active" id="tab0_nav"
+                    <button class="nav-link fw-bold active" id="tab_default_nav"
+                        data-bs-toggle="tab" data-bs-target="#tab_default"
+                        type="button"
+                        role="tab" aria-controls="tab_default"
+                        aria-selected="true">Masky</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link fw-bold" id="tab0_nav"
                         data-bs-toggle="tab" data-bs-target="#tab0"
                         type="button"
-                        role="tab" aria-controls="tab0" aria-selected="true">Základ</button>
+                        role="tab" aria-controls="tab0" aria-selected="false">Základní
+                        přikazy</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link fw-bold" id="tab1_nav"
@@ -128,7 +89,14 @@
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active w-100 h-100" id="tab0"
+                <div class="tab-pane fade show active w-100 h-100"
+                    id="tab_default"
+                    role="tabpanel"
+                    aria-labelledby="tab_default_nav">
+                    <iframe class="w-100 h-100" src="./tabs/tab_default.html"
+                        frameborder="0"></iframe>
+                </div>
+                <div class="tab-pane fade w-100 h-100" id="tab0"
                     role="tabpanel"
                     aria-labelledby="tab0_nav">
                     <iframe class="w-100 h-100" src="./tabs/tab0.html"

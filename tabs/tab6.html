@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>DHCP</title>
+        <title>VLAN</title>
         <meta author="Martin Krčma">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,25 +16,24 @@
     <body>
         <div class="container py-3">
             <!-- Prikazy -->
-            <h3>Příkazy</h3>
-            <hr>
-            <h4>Přiřazení portů do VLAN</h4>
-            <p class="mb-0 text-danger">U všech switchu, které jsou přímo připojený k VLAN sítím s koncovími zařízeními:</p>
+            <h2>Přiřazení portů do VLAN</h2>
+            <p class="mb-0 text-danger">U všech switchu, které jsou přímo
+                připojený k VLAN sítím s koncovími zařízeními:</p>
             <br>
             <p class="mb-0">Vstoupí do konfigurace více portu switche:</p>
-            <p class="mt-0"><span class="fw-bold">Swith(config)#</span> <span
+            <p class="mt-0"><span class="fw-bold">Switch(config)#</span> <span
                     class="text-info">interface range &lt;rozsah
                     portů/rozhraní&gt;</span></p>
             <p class="mb-0">Nastavení porty do přístupového módu:</p>
-            <p class="mt-0"><span class="fw-bold">Swith(config-if-range)#</span>
+            <p class="mt-0"><span class="fw-bold">Switch(config-if-range)#</span>
                 <span
                     class="text-info">switchport mode access</span></p>
             <p class="mb-0">Zařazení portů do VLANy se specifikovaným číslem:</p>
-            <p class="mt-0"><span class="fw-bold">Swith(config-if-range)#</span>
+            <p class="mt-0"><span class="fw-bold">Switch(config-if-range)#</span>
                 <span
                     class="text-info">switchport access vlan &lt;číslo VLAN&gt;</span></p>
             <p class="mb-0">Ukončení konfigurace:</p>
-            <p class="mt-0"><span class="fw-bold">Swith(config-if-range)#</span>
+            <p class="mt-0"><span class="fw-bold">Switch(config-if-range)#</span>
                 <span
                     class="text-info">exit</span></p>
             <br>
@@ -50,48 +49,47 @@
                 <input type="number" class="form-control"
                     id="vlan" min="2" max="1001" value="10">
             </div>
-            <ul id="cmd_list" class="list-group scroll"></ul>
             <button type="submit" class="btn btn-primary"
                 onclick="generatePorts()">Vygeneruj</button>
-            <hr>
+            <ul id="cmd_list" class="list-group scroll pt-3"></ul>
             <br>
+            <hr>
 
-            <h4>Konfigurace Trunku</h4>
-            <p class="mb-0 text-danger">U všech portů switchů, které přeposílají packy dál v sítí směrem k centrálnímu prvku sítě:</p>
+            <h2>Konfigurace Trunku</h2>
+            <p class="mb-0 text-danger">U všech portů switchů, které přeposílají
+                packy dál v sítí směrem k centrálnímu prvku sítě:</p>
             <br>
             <p class="mb-0">Vstoupí do konfigurace více portu switche:</p>
-            <p class="mt-0"><span class="fw-bold">Swith(config)#</span> <span
+            <p class="mt-0"><span class="fw-bold">Switch(config)#</span> <span
                     class="text-info">interface &lt;port/rozhraní&gt;</span></p>
             <p class="mb-0">Doporučeno nejprve vypnout port:</p>
-            <p class="mt-0"><span class="fw-bold">Swith(config-if)#</span>
+            <p class="mt-0"><span class="fw-bold">Switch(config-if)#</span>
                 <span
                     class="text-info">shutdown</span></p>
             <p class="mb-0">Nastavení portu do TRUNK modu:</p>
-            <p class="mt-0"><span class="fw-bold">Swith(config-if)#</span>
+            <p class="mt-0"><span class="fw-bold">Switch(config-if)#</span>
                 <span
                     class="text-info">switchport mode trunk</span></p>
             <p class="mb-0">Spuštění portu:</p>
-            <p class="mt-0"><span class="fw-bold">Swith(config-if)#</span>
+            <p class="mt-0"><span class="fw-bold">Switch(config-if)#</span>
                 <span
                     class="text-info">no shutdown</span></p>
             <p class="mb-0">Ukončení konfigurace:</p>
-            <p class="mt-0"><span class="fw-bold">Swith(config-if)#</span>
-                <span
-                    class="text-info">exit
-                    <!-- Vygeneruj sekvenci -->
-                    <h2>Vygenerování konfigurace trunku</h2>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">Port</span>
-                        <input type="text" class="form-control"
-                            id="port" value="FastEthernet0/1">
-                    </div>
-                    <ul id="cmd_list_2" class="list-group scroll"></ul>
-                    <button type="submit" class="btn btn-primary"
-                        onclick="generateTrunk()">Vygeneruj</button>
-                    <hr>
-                </div>
+            <p class="mt-0"><span class="fw-bold">Switch(config-if)#</span>
+                <span class="text-info">exit</span></p>
+            <!-- Vygeneruj sekvenci -->
+            <h2>Vygenerování konfigurace trunku</h2>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Port</span>
+                <input type="text" class="form-control"
+                    id="port" value="FastEthernet0/1">
+            </div>
+            <button type="submit" class="btn btn-primary"
+                onclick="generateTrunk()">Vygeneruj</button>
+            <ul id="cmd_list_2" class="list-group scroll pt-3"></ul>
+        </div>
 
-                <script src="../global.js" async defer></script>
-                <script src="./tab6.js" async defer></script>
-            </body>
-        </html>
+        <script src="../global.js" async defer></script>
+        <script src="./tab6.js" async defer></script>
+    </body>
+</html>

@@ -16,7 +16,7 @@
     <body>
         <div class="container py-3">
             <!-- Prikazy -->
-            <h3>Příkazy</h3>
+            <h2>Příkazy</h2>
             <p class="mb-0">Vstoupení do módu konfigurace rozhraní:</p>
             <p class="mt-0"><span class="fw-bold">Router(config)#</span> <span
                     class="text-info">interface &lt;název rozhraní&gt;</span></p>
@@ -30,7 +30,6 @@
             <p class="mb-0">Ukončí konfigurací rozhraní:</p>
             <p><span class="fw-bold">Router(config)#</span> <span
                     class="text-info">exit</span></p>
-            <hr>
 
             <!-- Vygeneruj sekvenci -->
             <h2>Vygenerování příkazů</h2>
@@ -47,10 +46,9 @@
                 <input type="number" class="form-control"
                     id="mask" min="0" max="32" value="24">
             </div>
-            <ul id="cmd_list" class="list-group scroll"></ul>
             <button type="submit" class="btn btn-primary"
                 onclick="generate()">Vygeneruj</button>
-            <hr>
+            <ul id="cmd_list" class="list-group scroll pt-3"></ul>
         </div>
 
         <script src="../global.js" async defer></script>

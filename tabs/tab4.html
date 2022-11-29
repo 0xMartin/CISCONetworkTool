@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Dynamické směrování<</title>
+        <title>Dynamické směrování</title>
         <meta author="Martin Krčma">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,23 +12,36 @@
             rel="stylesheet"
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
             crossorigin="anonymous">
+        <style>
+                canvas {
+                    image-rendering: optimizeSpeed;            
+                    image-rendering: -moz-crisp-edges;          
+                    image-rendering: -webkit-optimize-contrast; 
+                    image-rendering: -o-crisp-edges;            
+                    image-rendering: crisp-edges;              
+                    -ms-interpolation-mode: nearest-neighbor;   
+                }
+        </style>
     </head>
     <body>
         <div class="container py-3">
             <!-- Prikazy -->
-            <h3>Příkazy</h3>
-            <p class="mb-0 text-danger">Konfiguraci směrování provádět vždy až
+            <h2>Příkazy</h2>
+            <p class="mb-0 text-danger">Konfiguraci směrování provádět vždy
+                až
                 uplně nakoncí
                 kdy jsou nakonfigurovány všechny síťové rozhraní:</p>
             <br>
             <p class="mb-0">Přejde do módu konfigurace směrování (RIP):</p>
-            <p class="mt-0"><span class="fw-bold">Router(config)#</span> <span
+            <p class="mt-0"><span class="fw-bold">Router(config)#</span>
+                <span
                     class="text-info">router rip</span></p>
             <p class="mb-0">Nastaví RIP na verzi 2:</p>
             <p class="mt-0"><span class="fw-bold">Router(config-router)#</span>
                 <span class="text-info">version 2</span></p>
             <p class="mb-0">Příkaz "network" se používá k určení přímo
-                připojených podsítí k routeru, které mají být konfigurovány a
+                připojených podsítí k routeru, které mají být konfigurovány
+                a
                 mají být zahrnuty do aktualizací směrování:</p>
             <p class="mt-0"><span class="fw-bold">Router(config-router)#</span>
                 <span
@@ -40,9 +53,7 @@
                     class="text-info">no auto-summary</span></p>
             <p class="mb-0">Ukončí konfiguraci směrování:</p>
             <p class="mt-0"><span class="fw-bold">Router(config-router)#</span>
-                <span
-                    class="text-info">exit</span></p>
-            <hr>
+                <span class="text-info">exit</span></p>
 
             <!-- Vygeneruj sekvenci -->
             <h2>Vygenerování routovaní</h2>
@@ -51,10 +62,13 @@
                 <input type="text" class="form-control"
                     id="ip_list" value="10.0.0.0, 172.16.0.0">
             </div>
-            <ul id="cmd_list" class="list-group scroll"></ul>
             <button type="submit" class="btn btn-primary"
                 onclick="generate()">Vygeneruj</button>
-            <hr>
+
+            <ul id="cmd_list" class="list-group scroll pt-3"></ul>
+            <div class="d-flex justify-content-center">
+                <canvas id="canvas" class="pt-3" width="500px" height="300px"></canvas>
+            </div>
         </div>
 
         <script src="../global.js" async defer></script>

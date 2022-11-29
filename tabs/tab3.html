@@ -16,7 +16,7 @@
     <body>
         <div class="container py-3">
             <!-- Prikazy -->
-            <h3>Příkazy</h3>
+            <h2>Příkazy</h2>
             <p class="mb-0 text-danger">Konfiguraci směrování provádět vždy až
                 uplně nakoncí
                 kdy jsou nakonfigurovány všechny síťové rozhraní:</p>
@@ -36,7 +36,6 @@
             <p class="mt-0"><span class="fw-bold">Router(config)#</span> <span
                     class="text-info">no ip route &lt;paramtery stejne jako u
                     "ip route"&gt;</span></p>
-            <hr>
 
             <!-- Vygeneruj sekvenci -->
             <h2>Vygenerování routovaní</h2>
@@ -53,10 +52,12 @@
                 <input type="text" class="form-control"
                     id="interface" value="192.168.0.1">
             </div>
-            <ul id="cmd_list" class="list-group scroll"></ul>
             <button type="submit" class="btn btn-primary"
                 onclick="generate()">Vygeneruj</button>
-            <hr>
+            <ul id="cmd_list" class="list-group scroll pt-3"></ul>
+            <div class="d-flex justify-content-center">
+                <canvas id="canvas" class="pt-3" width="500px" height="300px"></canvas>
+            </div>
         </div>
 
         <script src="../global.js" async defer></script>

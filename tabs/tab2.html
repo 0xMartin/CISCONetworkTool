@@ -17,7 +17,8 @@
         <div class="container py-3">
             <!-- Prikazy -->
             <h3>Příkazy</h3>
-            <p class="mb-0">Vstoupení do módu konfigurace virtuálního rozhraní. VLAN jsou identifikovány pomocí jejich čísla:</p>
+            <p class="mb-0">Vstoupení do módu konfigurace virtuálního rozhraní.
+                VLAN jsou identifikovány pomocí jejich čísla:</p>
             <p class="mt-0"><span class="fw-bold">Router(config)#</span> <span
                     class="text-info">interface vlan &lt;čislo&gt;</span></p>
             <p class="mb-0">Nastavení IP a masky rozhraní:</p>
@@ -34,8 +35,6 @@
             <p class="mb-0">Odebere VLAN rozhraní:</p>
             <p><span class="fw-bold">Router(config)#</span> <span
                     class="text-info">no interface vlan &lt;čislo&gt;</span></p>
-            <hr>
-
             <!-- Vygeneruj sekvenci -->
             <h2>Vygenerování příkazů</h2>
             <div class="input-group mb-3">
@@ -51,10 +50,9 @@
                 <input type="number" class="form-control"
                     id="mask" min="0" max="32" value="24">
             </div>
-            <ul id="cmd_list" class="list-group scroll"></ul>
             <button type="submit" class="btn btn-primary"
                 onclick="generate()">Vygeneruj</button>
-            <hr>
+            <ul id="cmd_list" class="list-group scroll pt-3"></ul>
         </div>
 
         <script src="../global.js" async defer></script>
