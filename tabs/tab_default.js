@@ -122,7 +122,7 @@ function calculate_5() {
         var min = 9999;
         var index = -1;
         for (var i = 0; i < masks.length; ++i) {
-            if (min > masks_final[i]) {
+            if (min > masks_final[i] && validOperation(masks, masks_final, i)) {
                 min = masks_final[i];
                 index = i;
             }
@@ -174,6 +174,22 @@ function calculate_5() {
         li.innerHTML = "<b>IP: </b><span class=\"text-success\">" + intToIP(network_ip + offset) + "/" + m + "</span> <b>Brodcast: </b> <span class=\"text-danger\">" + intToIP(network_ip + offset + end) + "</span> <b>Hosts: </b> " + (Math.pow(2, 32 - m) - 2) + "</span>";
         ip_list_5.appendChild(li);
     });
+}
+
+function validOperation(masks, final_masks, i) {
+    var target = final_masks[i];  
+    var cnt = 0;
+    for(var i = 0; i < masks.length; i++) {
+        if(masks[i] == target) {
+            cnt++;    
+        }   
+    }
+    for(var i = 0; i < final_masks.length; i++) {
+        if(final_masks[i] == target) {
+            cnt--;    
+        }   
+    }
+    return cnt != 0;
 }
 
 /******************************************************************************************* */
