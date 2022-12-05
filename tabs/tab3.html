@@ -22,13 +22,13 @@
                 kdy jsou nakonfigurovány všechny síťové rozhraní:</p>
             <br>
             <p class="mb-0">Nakonfiguruje statické směrování do cílové sítě.
-                Interface musí být zvolen ten, který je připojen k trase, která
+                Interface musí být zvolen ten, který je dalšího v trase, která
                 vede k cílové síťi. Pakety, které přijdou do routeru s IP
                 patřící do zvolené cílové sítě, budou routerem dále odeslány
-                skrz tento interface:</p>
+                na tento interface dalšího routeru:</p>
             <p class="mt-0"><span class="fw-bold">Router(config)#</span> <span
                     class="text-info">ip route &lt;IP cílove sítě&gt; &lt;maska
-                    cílove sítě&gt; &lt;IP interfacu&gt;</span></p>
+                    cílove sítě&gt; &lt;IP interfacu dalšího routeru&gt;</span></p>
             <p class="mb-0">Zobrazí všechny statické routovaní:</p>
             <p class="mt-0"><span class="fw-bold">Router(config)#</span> <span
                     class="text-info">show ip static-route</span></p>
@@ -48,7 +48,7 @@
                     id="mask" min="0" max="32" value="28">
             </div>
             <div class="input-group mb-3">
-                <span class="input-group-text">Interface IP</span>
+                <span class="input-group-text">Next hop</span>
                 <input type="text" class="form-control"
                     id="interface" value="192.168.0.1">
             </div>
