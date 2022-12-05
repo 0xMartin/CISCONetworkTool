@@ -48,9 +48,9 @@ function calculate_3() {
     var wm = CIDR2netmask(mask_prefix_length_3.value);
     var wm_2 = "";
     wm.split(".").forEach(num => {
-        wm_2 += (255 - num) + ".";  
+        wm_2 += (255 - num) + ".";
     });
-    mask_output_3.innerHTML = wm_2.substring(0, wm_2.length -1);
+    mask_output_3.innerHTML = wm_2.substring(0, wm_2.length - 1);
 }
 
 function calculate_4() {
@@ -100,52 +100,80 @@ function calculate_5() {
     // clear
     ip_list_5.innerHTML = "";
 
-    // for each value
-    const map = new Map();
-    var subnets_IP = [];
+    // preveda pocty hostu v s siti na maximalni moznou delku masky
+    var masks = [];
     min_hosts_counts_5.value.split(",").forEach(min_host => {
-        var li = document.createElement("li");
-        li.classList = "list-group-item";
-    
         var host_length = minimalHostAddressLength(parseInt(min_host));
-        if(host_length == -1 || host_length >= inverse) {
-            li.innerHTML = "<span class=\"text-danger\"> Subsíť s početem IP [" + min_host + "] není možna</span>"; 
+        if (host_length == -1 || host_length >= inverse) {
+            var li = document.createElement("li");
+            li.classList = "list-group-item";
+            li.innerHTML = "<span class=\"text-danger\">Síť s počtem [" + min_host + "] není možná</span>";
+            ip_list_5.appendChild(li);
+            return;
         } else {
-            var cnt = 1;
-            if(map.get(host_length) != null) {
-                cnt = map.get(host_length) + 1;
-                map.set(host_length, cnt);
-            } else {
-                map.set(host_length, cnt);
-            }
-
-            if(cnt >= Math.pow(2, inverse - host_length)) {
-                li.innerHTML = "<span class=\"text-danger\"> Překročen počet subsíť s prefixem [" + (32 - host_length) + "] </span>"; 
-            } else {
-                var end = Math.pow(2, host_length) - 1;
-
-                var subnetIP = 0;
-                do {
-                    subnetIP = network_ip + Math.pow(2, host_length) * cnt
-                    if(cnt >= Math.pow(2, inverse - host_length)) {
-                        li.innerHTML = "<span class=\"text-danger\"> Překročen počet subsíť s prefixem [" + (32 - host_length) + "] </span>"; 
-                        subnetIP = -1;
-                        break;
-                    } 
-                    cnt++;
-                } while(subnets_IP.includes(subnetIP));
-                
-                if(subnetIP != -1) {
-                    subnets_IP.push(subnetIP);
-                    var ipsub = intToIP(subnetIP) + " / " + (32 - host_length);
-                    var ipsub_end = intToIP(subnetIP + end) + " / " + (32 - host_length);
-                    li.innerHTML = "<b>IP:</b> <span class=\"text-success\">" + ipsub + "</span> <b>Brodcast:</b> <span class=\"text-danger\">" + ipsub_end + "</span> <b>Počet: </b>" + (Math.pow(2, host_length) - 2);
-                }
-            }
+            masks.push(32 - host_length);
         }
-        ip_list_5.appendChild(li);
     });
 
+    // create subnets
+    var masks_final = [parseInt(mask_prefix_length_5.value)];
+    while (masks_final.length != masks.length) {
+        // find min
+        var min = 9999;
+        var index = -1;
+        for (var i = 0; i < masks.length; ++i) {
+            if (min > masks_final[i]) {
+                min = masks_final[i];
+                index = i;
+            }
+        }
+        if (index == -1 || min == 32) break;
+
+        // divide min on subnets
+        masks_final.splice(index, 1);
+        masks_final.push(min + 1);
+        masks_final.push(min + 1);
+    }
+
+    masks_final.sort();
+    masks.sort();
+
+    // check
+    for (var i = 0; i < masks_final.length; i++) {
+        if (masks[i] < masks_final[i]) {
+            var li = document.createElement("li");
+            li.classList = "list-group-item";
+            li.innerHTML = "<span class=\"text-danger\">Toto rozdělení není možné</span>";
+            ip_list_5.appendChild(li);
+            return;
+        }
+    }
+
+    // vypocit IP pro subsite
+    var main_mask = parseInt(mask_prefix_length_5.value);
+    var max_mask = Math.max(...masks_final);
+    var cnt_map = new Map();
+    masks_final.forEach(m => {
+        var offset = 0;
+        for(var i = main_mask; i <= max_mask; i++) {
+            if(cnt_map.get(i) != null) {
+                offset += Math.pow(2, 32 - i) * cnt_map.get(i);
+            }
+        }
+
+        if(cnt_map.get(m) != null) {
+            cnt_map.set(m, cnt_map.get(m) + 1)
+        } else {
+            cnt_map.set(m, 1);
+        }
+
+        var end = Math.pow(2, 32 - m) - 1;
+
+        var li = document.createElement("li");
+        li.classList = "list-group-item";
+        li.innerHTML = "<b>IP: </b><span class=\"text-success\">" + intToIP(network_ip + offset) + "/" + m + "</span> <b>Brodcast: </b> <span class=\"text-danger\">" + intToIP(network_ip + offset + end) + "</span> <b>Hosts: </b> " + (Math.pow(2, 32 - m) - 2) + "</span>";
+        ip_list_5.appendChild(li);
+    });
 }
 
 /******************************************************************************************* */
