@@ -99,6 +99,22 @@ function netmask2CIDR(netmask){
 }
 
 /**
+ * Vypocita minimalni delku casti pro adresovani hosta
+ * @param {*} hosts Minimalni pozadovany pocet hostu v siti
+ */
+function minimalHostAddressLength(hosts) {
+    if(hosts < 0) {
+        return -1;
+    }
+    for(var i = 1; i <= 32; ++i) {
+        if(hosts <= Math.pow(2, i)) {
+            return i;
+        }
+    }   
+    return -1; 
+}
+
+/**
  * IP adresu ve string formatu (255.255.255.255) prevede na uint32
  * @param {*} ip IP
  * @returns uint32 IP adresa
